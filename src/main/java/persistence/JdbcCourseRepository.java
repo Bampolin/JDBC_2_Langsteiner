@@ -36,7 +36,9 @@ public record JdbcCourseRepository(Connection connection) implements CourseRepos
 
     @Override
     public Optional<Course> findById(int id) throws SQLException {
-        return Optional.empty();
+        return findAll().stream()
+                .filter(s -> s.getId() == id)
+                .findFirst();
     }
 
     @Override
