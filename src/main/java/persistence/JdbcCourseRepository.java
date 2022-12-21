@@ -49,7 +49,7 @@ public record JdbcCourseRepository(Connection connection) implements CourseRepos
 
         PreparedStatement prep = connection.prepareStatement("insert into courses (type_id, professor_id, description, begin_date) values (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
-        prep.
+        prep.setString(1,String.valueOf(course.getType().getId()));
         prep.setInt(2, course.getProfessor().getId());
         prep.setString(3, course.getDescription());
         prep.setDate(4, Date.valueOf(course.getBegin()));
